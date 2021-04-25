@@ -1,18 +1,89 @@
-<table>
+<div class="actions">
+    <input type="text" name="searchString" class="searchString" placeholder="Введите имя или фамилию..."
+        [(ngModel)]="searchString">
+
+    <label for="filterBirthDate" class="filter">Дата рождения</label>
+    <input type="date" name="filterBirthDate" id="filterBirthDate" [(ngModel)]="filterBirthDate">
+
+    <label for="filterAverageRating" class="filter">Средний балл</label>
+    <input type="number" step="0.1" name="filterAverageRating" id="filterAverageRating"
+        [(ngModel)]="filterAverageRating">
+
+    <label for="highlightStudents">Студенты с низким баллом</label>
+    <input id="highlightStudents" type="checkbox" [(ngModel)]="isStudentsHighlighted" />
+</div>
+
+<table class="students-table" make-sortable>
     <tr>
-        <th>Имя</th>
-        <th>Отчество</th>
-        <th>Фамилия</th>
-        <th>Дата рождения</th>
-        <th>Средняя оценка</th>
+        <th>
+            <div class="column-description">Имя
+                <div class="sorting-column">
+                    <span class="sorting-column__asc" (click)="sort('name', 'asc')"><img
+                            src="https://img.icons8.com/material/20/000000/present-to-all.png" /></span>
+                    <span class="sorting-column__desc" (click)="sort('name', 'desc')"><img
+                            src="https://img.icons8.com/material/20/000000/present-to-all.png" /></span>
+                </div>
+            </div>
+        </th>
+        <th>
+            <div class="column-description">Отчество
+                <div class="sorting-column">
+                    <span class="sorting-column__asc" (click)="sort('patronymic', 'asc')"><img
+                            src="https://img.icons8.com/material/20/000000/present-to-all.png" /></span>
+                    <span class="sorting-column__desc" (click)="sort('patronymic', 'desc')"><img
+                            src="https://img.icons8.com/material/20/000000/present-to-all.png" /></span>
+                </div>
+            </div>
+        </th>
+        <th>
+            <div class="column-description">Фамилия
+                <div class="sorting-column">
+                    <span class="sorting-column__asc" (click)="sort('surname', 'asc')"><img
+                            src="https://img.icons8.com/material/20/000000/present-to-all.png" /></span>
+                    <span class="sorting-column__desc" (click)="sort('surname', 'desc')"><img
+                            src="https://img.icons8.com/material/20/000000/present-to-all.png" /></span>
+                </div>
+            </div>
+        </th>
+        <th>
+            <div class="column-description">Дата рождения
+                <div class="sorting-column">
+                    <span class="sorting-column__asc" (click)="sort('birthDate', 'asc')"><img
+                            src="https://img.icons8.com/material/20/000000/present-to-all.png" /></span>
+                    <span class="sorting-column__desc" (click)="sort('birthDate', 'desc')"><img
+                            src="https://img.icons8.com/material/20/000000/present-to-all.png" /></span>
+                </div>
+            </div>
+        </th>
+        <th>
+            <div class="column-description">Средний балл
+                <div class="sorting-column">
+                    <span class="sorting-column__asc" (click)="sort('averageRating', 'asc')"><img
+                            src="https://img.icons8.com/material/20/000000/present-to-all.png" /></span>
+                    <span class="sorting-column__desc" (click)="sort('averageRating', 'desc')"><img
+                            src="https://img.icons8.com/material/20/000000/present-to-all.png" /></span>
+                </div>
+            </div>
+        </th>
         <th></th>
     </tr>
-    <tr *ngFor="let student of students" [class.low-rating]="student.averageRating < 3">
-        <td>{{student.name}}</td>
+    <tr *ngFor="let student of students | studentsBirthDateFilter: filterBirthDate | studentsAverageRatingFilter: filterAverageRating"
+        [class.low-rating]="isStudentsHighlighted && student.averageRating < lowRating">
+        <td [class.search]="searchStudent(student.name)">{{student.name}}</td>
         <td>{{student.patronymic}}</td>
-        <td>{{student.surname}}</td>
+        <td [class.search]="searchStudent(student.surname)">{{student.surname}}</td>
         <td>{{student.birthDate | date:'dd.MM.yyyy'}}</td>
         <td>{{student.averageRating}}</td>
         <td><button class="delete" (click)="deleteStudent(student.id)"></button></td>
     </tr>
 </table>
+
+<div class="popup" *ngIf="isPopupVisible">
+    <div class="popup-message">
+        <p>Удалить строку?</p>
+        <div class="popup-buttons">
+            <button (click)="closePopup(true)">Да</button>
+            <button (click)="closePopup(false)">Нет</button>
+        </div>
+    </div>
+</div>

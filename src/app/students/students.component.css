@@ -1,3 +1,7 @@
+input{
+    margin: 5px 0;
+} 
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -11,12 +15,8 @@ table td, th {
 }
 
 table td {
-    border-left: 1px solid #ECF0F1;
+    border-left: 1px solid #eeecf1;
     border-right: 1px solid #ECF0F1;
-}
-
-.low-rating {
-    background-color: #f8757591;
 }
 
 table td button {
@@ -28,9 +28,73 @@ table td button {
 }
 
 table th {
-    background-color: #4ECDC4;
+    background-color: #4ecdc5e5;
+    cursor: pointer;
 }
 
 table tr:nth-of-type(odd) td {
-    background-color: rgba(108, 240, 231, 0.288);
+    background-color: #6cf0e72d;
+}
+
+.low-rating {
+    background-color: #f8757591;
+}
+
+.search{
+    background-color: #11a001b9 !important;
+}
+
+.filter{
+    margin: 5px;
+}
+
+.searchString{
+    width: 790px;
+}
+
+.column-description{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sorting-column{
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.sorting-column__desc, .sorting-column__asc{
+    margin: -3px 0;
+}
+
+.sorting-column__desc img{
+    transform: rotate(180deg);
+}
+
+.popup{
+    position: fixed;
+    width: 800px;
+    height: 100vh;
+    top: 0;
+    background: #0008;
+    z-index: 1;
+}
+
+.popup-message{
+    margin: 30vh 20vw;
+    padding: 20px;
+    background: #4ecdc5e5;
+}
+
+.popup-message p{
+    text-align: center;
+}
+
+.popup-buttons{
+    text-align: center;
+}
+
+.popup-buttons button{
+    width: 55px;
+    margin: 0 2px;
 }
