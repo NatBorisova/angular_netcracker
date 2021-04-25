@@ -28,25 +28,24 @@ export class StudentsComponent {
   public searchStudent(value: string): boolean {
     if (this.searchString === "") {
       return false;
-    } else {
-      return RegExp(this.searchString.toLowerCase()).test(value.toLowerCase());
     }
+    return RegExp(this.searchString.toLowerCase()).test(value.toLowerCase());
   }
 
   public sort(property: string, order: string): void {
     this.students.sort(this.compare(property, order));
   }
 
-  private compare(property: string, order: string) {
+  private compare(property: string, order: string): any {
     return (a: any, b: any) => {
       if (a[property] > b[property]) {
-        return 1 * ((order === 'asc') ? 1 : -1);
+        return 1 * ((order === "asc") ? 1 : -1);
       }
       if (a[property] < b[property]) {
-        return -1 * ((order === 'asc') ? 1 : -1);
+        return -1 * ((order === "asc") ? 1 : -1);
       }
       return 0;
-    }
+    };
   }
 
   closePopup(isDelete: boolean): void {
@@ -55,5 +54,5 @@ export class StudentsComponent {
       this.students = this.students.filter(s => s.id !== this.idDeleteStudent);
     }
     this.idDeleteStudent = 0;
-   }
+  }
 }

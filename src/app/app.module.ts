@@ -3,7 +3,7 @@ import { FormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 
 import { AppComponent } from "./app.component";
-import { StudentsBirthDateFilterPipe, StudentsAverageRatingFilterPipe } from "./shared/students-filter.pipe";
+import { StudentsAverageRatingFilterPipe, StudentsBirthDateFilterPipe } from "./shared/students-filter.pipe";
 import { StudentsComponent } from "./students/students.component";
 
 @NgModule({

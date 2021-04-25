@@ -1,22 +1,22 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
-export interface IStudent{
-  readonly id: number,
-  name: string,
-  patronymic: string,
-  surname: string,
-  birthDate: Date,
-  averageRating: number
+export interface IStudent {
+  readonly id: number;
+  name: string;
+  patronymic: string;
+  surname: string;
+  birthDate: Date;
+  averageRating: number;
 }
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"]
 })
 
 export class AppComponent {
-  tableTitle: string = 'Список студентов';
+  tableTitle: string = "Список студентов";
 
   public students: IStudent[] = [
     {
@@ -114,6 +114,6 @@ export class AppComponent {
       surname: "Капустин",
       birthDate: new Date("2002-12-31"),
       averageRating: 2.9
-    }
+    },
   ];
 }

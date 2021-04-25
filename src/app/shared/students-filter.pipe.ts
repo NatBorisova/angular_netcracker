@@ -9,7 +9,7 @@ export class StudentsBirthDateFilterPipe implements PipeTransform {
         if (birthDate.toString() === new Date("1970-01-01").toString() || birthDate.toString() === "") {
             return students;
         }
-        return students.filter(student => student.birthDate.toString() === (new Date(birthDate)).toString())
+        return students.filter(student => student.birthDate.toString() === (new Date(birthDate)).toString());
     }
 }
 
@@ -21,6 +21,6 @@ export class StudentsAverageRatingFilterPipe implements PipeTransform {
         if (averageRating === null || averageRating === 0) {
             return students;
         }
-        return students.filter(student => student.averageRating === averageRating)
+        return students.filter(student => student.averageRating === averageRating);
     }
 }
