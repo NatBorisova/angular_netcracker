@@ -1,1 +1,18 @@
-<p>all done</p>
+<table>
+    <tr>
+        <th>Имя</th>
+        <th>Отчество</th>
+        <th>Фамилия</th>
+        <th>Дата рождения</th>
+        <th>Средняя оценка</th>
+        <th></th>
+    </tr>
+    <tr *ngFor="let student of students" [class.low-rating]="student.averageRating < 3">
+        <td>{{student.name}}</td>
+        <td>{{student.patronymic}}</td>
+        <td>{{student.surname}}</td>
+        <td>{{student.birthDate | date:'dd.MM.yyyy'}}</td>
+        <td>{{student.averageRating}}</td>
+        <td><button class="delete" (click)="deleteStudent(student.id)"></button></td>
+    </tr>
+</table>

@@ -1,0 +1,36 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    overflow: hidden;
+}
+
+table td, th {
+    border-top: 1px solid #ECF0F1;
+    padding: 10px;
+}
+
+table td {
+    border-left: 1px solid #ECF0F1;
+    border-right: 1px solid #ECF0F1;
+}
+
+.low-rating {
+    background-color: #f8757591;
+}
+
+table td button {
+    border: none;
+    width: 20px;
+    height: 20px;
+    background: center center no-repeat url(https://img.icons8.com/office/20/000000/delete-sign.png);
+    cursor: pointer;
+}
+
+table th {
+    background-color: #4ECDC4;
+}
+
+table tr:nth-of-type(odd) td {
+    background-color: rgba(108, 240, 231, 0.288);
+}
