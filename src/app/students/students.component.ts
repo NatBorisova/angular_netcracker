@@ -11,18 +11,60 @@ export class StudentsComponent {
 
   @Input() students: IStudent[] = [];
 
-  private tableTitle: string = "List of students";
+  student: IStudent = {
+    id: 0,
+    name: "",
+    patronymic: "",
+    surname: "",
+    birthDate: new Date("1970-01-01"),
+    averageRating: 0
+  };
   searchString: string = "";
-  filterBirthDate: Date = new Date("1970-01-01");
-  filterAverageRating: number = 0;
+  filterBirthDateLeft: Date = new Date("1970-01-01");
+  filterBirthDateRight: Date = new Date("1970-01-01");
+  filterAverageRatingLeft: number = 0;
+  filterAverageRatingRight: number = 0;
   readonly lowRating: number = 3;
   isStudentsHighlighted: boolean = true;
   isPopupVisible: boolean = false;
   idDeleteStudent: number = 0;
+  isAddEditForm: boolean = false;
 
   public deleteStudent(id: number): void {
     this.isPopupVisible = true;
     this.idDeleteStudent = id;
+  }
+
+  public editStudent(student: IStudent): void {
+    this.student = student;
+    this.isAddEditForm = true;
+  }
+
+  public addNewStudent(): void {
+    this.isAddEditForm = true;
+  }
+
+  closeForm(studentStr: string): void {
+    this.clearStudent();
+    const newStudent = JSON.parse(studentStr);
+    newStudent.birthDate = new Date(newStudent.birthDate);
+    if (newStudent.id !== 0) {
+      this.students[newStudent.id - 1] = newStudent;
+    } else {
+      newStudent.id = this.students.length + 1;
+      this.students.push(newStudent);
+    }
+  }
+
+  clearStudent(): void {
+    this.student = {
+      id: 0,
+      name: "",
+      patronymic: "",
+      surname: "",
+      birthDate: new Date("1970-01-01"),
+      averageRating: 0
+    };
   }
 
   public searchStudent(value: string): boolean {

@@ -1,0 +1,74 @@
+.form-container {
+    position: fixed;
+    width: 800px;
+    height: 100vh;
+    top: 0;
+    background: #0008;
+    z-index: 1;
+}
+
+.action-form {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    background-color: rgb(102, 207, 200);
+    margin: 100px;
+    padding: 30px;
+}
+
+.fullName {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.button-close {
+    border: none;
+    width: 20px;
+    height: 20px;
+    background: center center no-repeat url(https://img.icons8.com/office/20/000000/delete-sign.png);
+    cursor: pointer;
+    position: absolute;
+    margin: -223px 0 0px 540px;
+}
+
+.student-name,
+.student-patronymic,
+.student-surname,
+.student-birthDate,
+.student-averageRating {
+    margin: 10px;
+}
+
+.button-submit {
+    width: 100%;
+    padding: 3px;
+    margin: 10px 10px 0;
+}
+
+input.ng-touched.ng-invalid {
+    border: solid #f8757591 2px;
+}
+
+.mistake-description {
+    font-size: 12px;
+    margin-bottom: -15px;
+    color: red;
+}
+
+.student-name .mistake-description {
+    margin-left: 34px;
+}
+
+.student-patronymic .mistake-description {
+    margin-left: 72px;
+}
+
+.student-surname .mistake-description {
+    margin-left: 71px;
+}
+
+.student-birthDate .mistake-description {
+    margin-left: 116px;
+}

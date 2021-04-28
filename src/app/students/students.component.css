@@ -19,11 +19,20 @@ table td {
     border-right: 1px solid #ECF0F1;
 }
 
-table td button {
+.delete {
     border: none;
     width: 20px;
     height: 20px;
     background: center center no-repeat url(https://img.icons8.com/office/20/000000/delete-sign.png);
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.edit {
+    border: none;
+    width: 20px;
+    height: 20px;
+    background: center center no-repeat url(https://img.icons8.com/cotton/20/000000/edit--v1.png);
     cursor: pointer;
 }
 
@@ -50,6 +59,10 @@ table tr:nth-of-type(odd) td {
 
 .searchString{
     width: 790px;
+}
+
+.birth-date{
+    width: 800px;
 }
 
 .column-description{
@@ -97,4 +110,8 @@ table tr:nth-of-type(odd) td {
 .popup-buttons button{
     width: 55px;
     margin: 0 2px;
+}
+
+.addNewStudent{
+    margin: 0 20px;
 }

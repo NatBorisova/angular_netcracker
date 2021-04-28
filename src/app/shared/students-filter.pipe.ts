@@ -5,11 +5,24 @@ import { IStudent } from "../app.component";
     name: "studentsBirthDateFilter"
 })
 export class StudentsBirthDateFilterPipe implements PipeTransform {
-    transform(students: IStudent[], birthDate: Date): IStudent[] {
-        if (birthDate.toString() === new Date("1970-01-01").toString() || birthDate.toString() === "") {
+    transform(students: IStudent[], birthDateLeft: Date, birthDateRight: Date): IStudent[] {
+        if ((birthDateLeft.toString() === new Date("1970-01-01").toString()
+            || birthDateLeft.toString() === "")
+            && (birthDateRight.toString() === new Date("1970-01-01").toString()
+                || birthDateRight.toString() === "")) {
             return students;
         }
-        return students.filter(student => student.birthDate.toString() === (new Date(birthDate)).toString());
+        return students.filter(function (student: IStudent): boolean {
+            if (birthDateLeft && (birthDateRight.toString() === new Date("1970-01-01").toString()
+                || birthDateRight.toString() === "")) {
+                return student.birthDate > new Date(birthDateLeft);
+            }
+            if (birthDateRight && (birthDateLeft.toString() === new Date("1970-01-01").toString()
+                || birthDateLeft.toString() === "")) {
+                return student.birthDate < new Date(birthDateRight);
+            }
+            return student.birthDate < new Date(birthDateRight) && student.birthDate > new Date(birthDateLeft);
+        });
     }
 }
 
@@ -17,10 +30,19 @@ export class StudentsBirthDateFilterPipe implements PipeTransform {
     name: "studentsAverageRatingFilter"
 })
 export class StudentsAverageRatingFilterPipe implements PipeTransform {
-    transform(students: IStudent[], averageRating: number): IStudent[] {
-        if (averageRating === null || averageRating === 0) {
+    transform(students: IStudent[], averageRatingLeft: number, averageRatingRight: number): IStudent[] {
+        if ((averageRatingLeft === null || averageRatingLeft === 0)
+            && (averageRatingRight === null || averageRatingRight === 0)) {
             return students;
         }
-        return students.filter(student => student.averageRating === averageRating);
+        return students.filter(function (student: IStudent): boolean {
+            if (averageRatingLeft && !averageRatingRight) {
+                return student.averageRating >= averageRatingLeft;
+            }
+            if (averageRatingRight && !averageRatingLeft) {
+                return student.averageRating <= averageRatingRight;
+            }
+            return student.averageRating > averageRatingLeft && student.averageRating < averageRatingRight;
+        });
     }
 }

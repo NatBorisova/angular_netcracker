@@ -1,7 +1,8 @@
 import { NgModule } from "@angular/core";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 
+import { ActionFormComponent } from "./action-form/action-form.component";
 import { AppComponent } from "./app.component";
 import { StudentsAverageRatingFilterPipe, StudentsBirthDateFilterPipe } from "./shared/students-filter.pipe";
 import { StudentsComponent } from "./students/students.component";
@@ -12,12 +13,15 @@ import { StudentsComponent } from "./students/students.component";
     StudentsComponent,
     StudentsBirthDateFilterPipe,
     StudentsAverageRatingFilterPipe,
+    ActionFormComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
+  exports: [ActionFormComponent],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, ActionFormComponent]
 })
 export class AppModule { }
