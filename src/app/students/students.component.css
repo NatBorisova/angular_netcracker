@@ -94,7 +94,7 @@ table tr:nth-of-type(odd) td {
 }
 
 .popup-message{
-    margin: 30vh 20vw;
+    margin: 30vh 16vw;
     padding: 20px;
     background: #4ecdc5e5;
 }
@@ -113,5 +113,5 @@ table tr:nth-of-type(odd) td {
 }
 
 .addNewStudent{
-    margin: 0 20px;
+    margin: 0 20px 3px;
 }

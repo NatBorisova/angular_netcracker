@@ -5,10 +5,13 @@
             <div class="student-name">
                 <label for="name">Имя</label>
                 <input type="text" id="name" formControlName="name" autocomplete="off" />
-                <div class="mistake-description" *ngIf="actionForm.get('fullName.name')?.invalid && actionForm.get('fullName.name')?.touched">
+                <div class="mistake-description"
+                    *ngIf="actionForm.get('fullName.name')?.invalid && actionForm.get('fullName.name')?.touched">
                     Необходимо ввести имя
                 </div>
-                <div class="mistake-description" *ngIf="actionForm.controls['fullName'].invalid && actionForm.get('fullName.name')?.valid && (actionForm.get('fullName.patronymic')?.valid || actionForm.get('fullName.surname')?.valid)">
+                <div class="mistake-description" *ngIf="actionForm.controls['fullName'].invalid && actionForm.get('fullName.name')?.valid 
+                    && (actionForm.get('fullName.patronymic')?.valid && actionForm.get('fullName.patronymic')?.touched 
+                        || actionForm.get('fullName.surname')?.valid && actionForm.get('fullName.surname')?.touched)">
                     Имя совпадает с отчеством/фамилией
                 </div>
             </div>
@@ -16,7 +19,8 @@
             <div class="student-patronymic">
                 <label for="patronymic">Отчество</label>
                 <input type="text" id="patronymic" formControlName="patronymic" autocomplete="off" />
-                <div class="mistake-description" *ngIf="actionForm.get('fullName.patronymic')?.invalid && actionForm.get('fullName.patronymic')?.touched">
+                <div class="mistake-description"
+                    *ngIf="actionForm.get('fullName.patronymic')?.invalid && actionForm.get('fullName.patronymic')?.touched">
                     Необходимо ввести отчество
                 </div>
             </div>
@@ -24,7 +28,8 @@
             <div class="student-surname">
                 <label for="surname">Фамилия</label>
                 <input type="text" id="surname" formControlName="surname" autocomplete="off" />
-                <div class="mistake-description" *ngIf="actionForm.get('fullName.surname')?.invalid && actionForm.get('fullName.surname')?.touched">
+                <div class="mistake-description"
+                    *ngIf="actionForm.get('fullName.surname')?.invalid && actionForm.get('fullName.surname')?.touched">
                     Необходимо ввести фамилию
                 </div>
             </div>
@@ -33,7 +38,8 @@
         <div class="student-birthDate">
             <label for="birthDate">Дата рождения</label>
             <input type="date" id="birthDate" formControlName="birthDate" />
-            <div class="mistake-description" *ngIf="actionForm.controls['birthDate'].invalid && actionForm.controls['birthDate'].touched">
+            <div class="mistake-description"
+                *ngIf="actionForm.controls['birthDate'].invalid && actionForm.controls['birthDate'].touched">
                 Дата рождения должна быть позднее {{date | date:'dd.MM.yyyy'}}
             </div>
         </div>
@@ -41,7 +47,8 @@
         <div class="student-averageRating">
             <label for="averageRating">Средний балл</label>
             <input type="number" step="0.1" id="averageRating" formControlName="averageRating" />
-            <div class="mistake-description" *ngIf="actionForm.controls['averageRating'].invalid && actionForm.controls['averageRating'].touched">
+            <div class="mistake-description"
+                *ngIf="actionForm.controls['averageRating'].invalid && actionForm.controls['averageRating'].touched">
                 Введите средний балл
             </div>
         </div>

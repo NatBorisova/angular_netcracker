@@ -69,6 +69,10 @@ export class ActionFormComponent implements OnInit {
     }
 
     ok(): void {
+        if (this.actionForm.invalid) {
+            return;
+        }
+        
         this.student = {
             id: this.student.id,
             name: this.actionForm.get("fullName.name")?.value,
