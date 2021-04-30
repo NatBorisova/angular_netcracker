@@ -24,13 +24,14 @@ export class ActionFormComponent implements OnInit {
     @Output() onClick = new EventEmitter();
 
     date: Date = new Date();
-
+    isFormInvalid: boolean = false;
     actionForm: FormGroup;
 
     constructor(private fb: FormBuilder) {
         this.actionForm = this.fb.group({});
         this.date.setFullYear(this.date.getFullYear() - 10);
         this.student.birthDate = this.date;
+        this.isFormInvalid = false;
     }
 
     ngOnInit(): void {
@@ -70,9 +71,9 @@ export class ActionFormComponent implements OnInit {
 
     ok(): void {
         if (this.actionForm.invalid) {
+            this.isFormInvalid = true;
             return;
         }
-        
         this.student = {
             id: this.student.id,
             name: this.actionForm.get("fullName.name")?.value,

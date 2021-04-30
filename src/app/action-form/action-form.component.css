@@ -72,3 +72,7 @@ input.ng-touched.ng-invalid {
 .student-birthDate .mistake-description {
     margin-left: 116px;
 }
+
+.student-averageRating .mistake-description {
+    margin-left: 108px;
+}
