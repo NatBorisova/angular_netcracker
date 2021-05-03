@@ -24,4 +24,4 @@ import { StudentsComponent } from "./students/students.component";
   providers: [],
   bootstrap: [AppComponent, ActionFormComponent]
 })
-export class AppModule { }
+export class AppModule {}

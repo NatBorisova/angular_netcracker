@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { IStudent } from "../app.component";
 
 @Component({
     selector: "app-action-form",
+    changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: "./action-form.component.html",
     styleUrls: ["./action-form.component.css"]
 })
