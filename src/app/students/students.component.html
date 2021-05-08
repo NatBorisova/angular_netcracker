@@ -2,21 +2,21 @@
     <input type="text" name="searchString" class="searchString" placeholder="Введите имя или фамилию..." [(ngModel)]="searchString">
 
     <div class="birth-date">
-        <label for="filterBirthDateLeft" class="filter">Дата рождения</label>
+        <label for="filterBirthDateLeft">Дата рождения</label>
         <input type="date" name="filterBirthDateLeft" id="filterBirthDateLeft" [(ngModel)]="filterBirthDateLeft">
         <input type="date" name="filterBirthDateRight" id="filterBirthDateRight" [(ngModel)]="filterBirthDateRight">
     </div>
 
     <div class="average-rating">
-        <label for="filterAverageRatingLeft" class="filter">Средний балл</label>
+        <label for="filterAverageRatingLeft">Средний балл</label>
         <input type="number" step="0.1" name="filterAverageRatingLeft" id="filterAverageRatingLeft" [(ngModel)]="filterAverageRatingLeft">
         <input type="number" step="0.1" name="filterAverageRatingRight" id="filterAverageRatingRight" [(ngModel)]="filterAverageRatingRight">
     </div>
-
-    <label for="highlightStudents">Студенты с низким баллом</label>
-    <input id="highlightStudents" type="checkbox" [(ngModel)]="isStudentsHighlighted" />
-    <button class="addNewStudent" (click)="addNewStudent()">Добавить студента</button>
-
+    <div>
+        <label for="highlightStudents">Студенты с низким баллом</label>
+        <input id="highlightStudents" type="checkbox" [(ngModel)]="isStudentsHighlighted" />
+        <button class="addNewStudent" routerLink="/add">Добавить студента</button>
+    </div>
 </div>
 
 <table class="students-table" make-sortable>
@@ -24,56 +24,46 @@
         <th>
             <div class="column-description">Имя
                 <div class="sorting-column">
-                    <span class="sorting-column__asc" (click)="sort('name', 'asc')"><img
-                            src="https://img.icons8.com/material/20/000000/present-to-all.png" /></span>
-                    <span class="sorting-column__desc" (click)="sort('name', 'desc')"><img
-                            src="https://img.icons8.com/material/20/000000/present-to-all.png" /></span>
+                    <span class="sorting-column__asc" (click)="studentsService.sort('name', 'asc')"></span>
+                    <span class="sorting-column__desc" (click)="studentsService.sort('name', 'desc')"></span>
                 </div>
             </div>
         </th>
         <th>
             <div class="column-description">Отчество
                 <div class="sorting-column">
-                    <span class="sorting-column__asc" (click)="sort('patronymic', 'asc')"><img
-                            src="https://img.icons8.com/material/20/000000/present-to-all.png" /></span>
-                    <span class="sorting-column__desc" (click)="sort('patronymic', 'desc')"><img
-                            src="https://img.icons8.com/material/20/000000/present-to-all.png" /></span>
+                    <span class="sorting-column__asc" (click)="studentsService.sort('patronymic', 'asc')"></span>
+                    <span class="sorting-column__desc" (click)="studentsService.sort('patronymic', 'desc')"></span>
                 </div>
             </div>
         </th>
         <th>
             <div class="column-description">Фамилия
                 <div class="sorting-column">
-                    <span class="sorting-column__asc" (click)="sort('surname', 'asc')"><img
-                            src="https://img.icons8.com/material/20/000000/present-to-all.png" /></span>
-                    <span class="sorting-column__desc" (click)="sort('surname', 'desc')"><img
-                            src="https://img.icons8.com/material/20/000000/present-to-all.png" /></span>
+                    <span class="sorting-column__asc" (click)="studentsService.sort('surname', 'asc')"></span>
+                    <span class="sorting-column__desc" (click)="studentsService.sort('surname', 'desc')"></span>
                 </div>
             </div>
         </th>
         <th>
             <div class="column-description">Дата рождения
                 <div class="sorting-column">
-                    <span class="sorting-column__asc" (click)="sort('birthDate', 'asc')"><img
-                            src="https://img.icons8.com/material/20/000000/present-to-all.png" /></span>
-                    <span class="sorting-column__desc" (click)="sort('birthDate', 'desc')"><img
-                            src="https://img.icons8.com/material/20/000000/present-to-all.png" /></span>
+                    <span class="sorting-column__asc" (click)="studentsService.sort('birthDate', 'asc')"></span>
+                    <span class="sorting-column__desc" (click)="studentsService.sort('birthDate', 'desc')"></span>
                 </div>
             </div>
         </th>
         <th>
             <div class="column-description">Средний балл
                 <div class="sorting-column">
-                    <span class="sorting-column__asc" (click)="sort('averageRating', 'asc')"><img
-                            src="https://img.icons8.com/material/20/000000/present-to-all.png" /></span>
-                    <span class="sorting-column__desc" (click)="sort('averageRating', 'desc')"><img
-                            src="https://img.icons8.com/material/20/000000/present-to-all.png" /></span>
+                    <span class="sorting-column__asc" (click)="studentsService.sort('averageRating', 'asc')"></span>
+                    <span class="sorting-column__desc" (click)="studentsService.sort('averageRating', 'desc')"></span>
                 </div>
             </div>
         </th>
         <th></th>
     </tr>
-    <tr *ngFor="let student of students | studentsBirthDateFilter: filterBirthDateLeft : filterBirthDateRight | studentsAverageRatingFilter: filterAverageRatingLeft : filterAverageRatingRight" [class.low-rating]="isStudentsHighlighted && student.averageRating < lowRating">
+    <tr *ngFor="let student of studentsService.students | studentsBirthDateFilter: filterBirthDateLeft : filterBirthDateRight | studentsAverageRatingFilter: filterAverageRatingLeft : filterAverageRatingRight" [class.low-rating]="isStudentsHighlighted && student.averageRating < lowRating">
         <td [class.search]="searchStudent(student.name)">{{student.name}}</td>
         <td>{{student.patronymic}}</td>
         <td [class.search]="searchStudent(student.surname)">{{student.surname}}</td>
@@ -81,7 +71,7 @@
         <td>{{student.averageRating}}</td>
         <td>
             <button class="delete" (click)="deleteStudent(student.id)"></button>
-            <button class="edit" (click)="editStudent(student)"></button>
+            <button class="edit" [routerLink]="['/edit', student.id]"></button>
         </td>
     </tr>
 </table>
@@ -95,5 +85,3 @@
         </div>
     </div>
 </div>
-
-<app-action-form *ngIf="isAddEditForm" [student]="student" [(isAddEditForm)]="isAddEditForm" (onClick)="closeForm($event)"></app-action-form>

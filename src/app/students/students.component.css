@@ -1,6 +1,6 @@
-input{
+input {
     margin: 5px 0;
-} 
+}
 
 table {
     width: 100%;
@@ -9,7 +9,8 @@ table {
     overflow: hidden;
 }
 
-table td, th {
+table td,
+th {
     border-top: 1px solid #ECF0F1;
     padding: 10px;
 }
@@ -49,42 +50,46 @@ table tr:nth-of-type(odd) td {
     background-color: #f8757591;
 }
 
-.search{
+.search {
     background-color: #11a001b9 !important;
 }
 
-.filter{
-    margin: 5px;
+.actions label {
+    margin-right: 5px;
 }
 
-.searchString{
-    width: 790px;
+.searchString {
+    width: calc(100% - 10px);
 }
 
-.birth-date{
+.birth-date {
     width: 800px;
 }
 
-.column-description{
+.column-description {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.sorting-column{
+.sorting-column {
     display: flex;
     flex-flow: column wrap;
 }
 
-.sorting-column__desc, .sorting-column__asc{
-    margin: -3px 0;
+.sorting-column__desc,
+.sorting-column__asc {
+    background: center center url(https://img.icons8.com/material/20/000000/present-to-all.png);
+    margin: 0;
+    width: 16px;
+    height: 16px;
 }
 
-.sorting-column__desc img{
+.sorting-column__desc {
     transform: rotate(180deg);
 }
 
-.popup{
+.popup {
     position: fixed;
     width: 800px;
     height: 100vh;
@@ -93,25 +98,25 @@ table tr:nth-of-type(odd) td {
     z-index: 1;
 }
 
-.popup-message{
+.popup-message {
     margin: 30vh 16vw;
     padding: 20px;
     background: #4ecdc5e5;
 }
 
-.popup-message p{
+.popup-message p {
     text-align: center;
 }
 
-.popup-buttons{
+.popup-buttons {
     text-align: center;
 }
 
-.popup-buttons button{
+.popup-buttons button {
     width: 55px;
     margin: 0 2px;
 }
 
-.addNewStudent{
+.addNewStudent {
     margin: 0 20px 3px;
 }

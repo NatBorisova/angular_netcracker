@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
-import { IStudent } from "../app.component";
+import { ActivatedRoute, Router } from "@angular/router";
+import { StudentsService } from "../shared/students.service";
 
 @Component({
     selector: "app-action-form",
@@ -11,45 +12,35 @@ import { IStudent } from "../app.component";
 
 export class ActionFormComponent implements OnInit {
 
-    @Input() student:
-        IStudent = {
-            id: 0,
-            name: "",
-            patronymic: "",
-            surname: "",
-            birthDate: new Date(),
-            averageRating: 0
-        };
-    @Input() isAddEditForm: boolean = false;
-    @Output() isAddEditFormChange = new EventEmitter();
-    @Output() onClick = new EventEmitter();
-
     date: Date = new Date();
     isFormInvalid: boolean = false;
     actionForm: FormGroup;
+    id: number = 0;
 
-    constructor(private fb: FormBuilder) {
+    constructor(private fb: FormBuilder, public studentsService: StudentsService, private router: Router, private activateRoute: ActivatedRoute) {
         this.actionForm = this.fb.group({});
         this.date.setFullYear(this.date.getFullYear() - 10);
-        this.student.birthDate = this.date;
         this.isFormInvalid = false;
     }
 
     ngOnInit(): void {
+
+        this.id = +this.activateRoute.snapshot.params["id"];
+        const student = this.studentsService.getStudent(this.id);
+
         this.actionForm = this.fb.group({
             fullName: this.fb.group({
-                name: [this.student.name, [Validators.required]],
-                patronymic: [this.student.patronymic, [Validators.required]],
-                surname: [this.student.surname, [Validators.required]],
+                name: [student ? student.name : "", [Validators.required]],
+                patronymic: [student ? student.patronymic : "", [Validators.required]],
+                surname: [student ? student.surname : "", [Validators.required]],
             }),
-            birthDate: [this.student.birthDate.toISOString().substring(0, 10), [this.birthDateValidator.bind(this)]],
-            averageRating: this.student.averageRating
+            birthDate: [(student ? new Date(student.birthDate) : this.date).toISOString().substring(0, 10), [this.birthDateValidator.bind(this)]],
+            averageRating: student ? student.averageRating : ""
         });
         this.actionForm.controls.fullName.setValidators([Validators.required, this.fullNameValidator.bind(this)]);
     }
 
     birthDateValidator(control: FormControl): { [s: string]: boolean } {
-
         if (new Date(control.value) > this.date) {
             return { "birthDate": true };
         }
@@ -57,7 +48,6 @@ export class ActionFormComponent implements OnInit {
     }
 
     fullNameValidator(control: FormControl): { [s: string]: boolean } {
-
         if (control.value.name === control.value.patronymic
             || control.value.name === control.value.surname) {
             return { "fullName": true };
@@ -65,26 +55,24 @@ export class ActionFormComponent implements OnInit {
         return {};
     }
 
-    close(): void {
-        this.isAddEditForm = false;
-        this.isAddEditFormChange.emit(this.isAddEditForm);
-    }
-
     ok(): void {
         if (this.actionForm.invalid) {
             this.isFormInvalid = true;
             return;
         }
-        this.student = {
-            id: this.student.id,
+        const student = {
+            id: this.id,
             name: this.actionForm.get("fullName.name")?.value,
             patronymic: this.actionForm.get("fullName.patronymic")?.value,
             surname: this.actionForm.get("fullName.surname")?.value,
             birthDate: this.actionForm.value.birthDate,
             averageRating: this.actionForm.value.averageRating
         };
-        this.isAddEditForm = false;
-        this.isAddEditFormChange.emit(this.isAddEditForm);
-        this.onClick.emit(JSON.stringify(this.student));
+        if (student.id) {
+            this.studentsService.edit(student);
+        } else {
+            this.studentsService.add(student);
+        }
+        this.router.navigate(["/"]);
     }
 }
