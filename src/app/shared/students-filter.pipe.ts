@@ -1,17 +1,18 @@
 import { Pipe, PipeTransform } from "@angular/core";
+import { IStudent } from "./students.service";
 
 @Pipe({
     name: "studentsBirthDateFilter"
 })
 export class StudentsBirthDateFilterPipe implements PipeTransform {
-    transform(students: any[], birthDateLeft: any, birthDateRight: Date): any[] {
+    transform(students: IStudent[], birthDateLeft: Date, birthDateRight: Date): IStudent[] {
         if ((birthDateLeft.toString() === new Date("1970-01-01").toString()
             || birthDateLeft.toString() === "")
             && (birthDateRight.toString() === new Date("1970-01-01").toString()
                 || birthDateRight.toString() === "")) {
             return students;
         }
-        return students.filter(function (student: any): boolean {
+        return students.filter(function (student: IStudent): boolean {
             if (birthDateLeft && (birthDateRight.toString() === new Date("1970-01-01").toString()
                 || birthDateRight.toString() === "")) {
                 return student.birthDate > new Date(birthDateLeft);
@@ -29,12 +30,12 @@ export class StudentsBirthDateFilterPipe implements PipeTransform {
     name: "studentsAverageRatingFilter"
 })
 export class StudentsAverageRatingFilterPipe implements PipeTransform {
-    transform(students: any[], averageRatingLeft: number, averageRatingRight: number): any[] {
+    transform(students: IStudent[], averageRatingLeft: number, averageRatingRight: number): IStudent[] {
         if ((averageRatingLeft === null || averageRatingLeft === 0)
             && (averageRatingRight === null || averageRatingRight === 0)) {
             return students;
         }
-        return students.filter(function (student: any): boolean {
+        return students.filter(function (student: IStudent): boolean {
             if (averageRatingLeft && !averageRatingRight) {
                 return student.averageRating >= averageRatingLeft;
             }

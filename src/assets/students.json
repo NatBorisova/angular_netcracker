@@ -1,0 +1,97 @@
+[{
+        "id": 1,
+        "name": "Павел",
+        "patronymic": "Иванович",
+        "surname": "Казаков",
+        "birthDate": "1995-01-26T00:00:00.000Z",
+        "averageRating": 4.5
+    },
+    {
+        "id": 2,
+        "name": "Анна",
+        "patronymic": "Борисовна",
+        "surname": "Швед",
+        "birthDate": "2000-05-15T00:00:00.000Z",
+        "averageRating": 4.7
+    },
+    {
+        "id": 3,
+        "name": "Дмитрий",
+        "patronymic": "Юрьевич",
+        "surname": "Чистяков",
+        "birthDate": "1991-03-09T00:00:00.000Z",
+        "averageRating": 2.4
+    },
+    {
+        "id": 4,
+        "name": "Петр",
+        "patronymic": "Николаевич",
+        "surname": "Борисов",
+        "birthDate": "1990-10-01T00:00:00.000Z",
+        "averageRating": 3
+    },
+    {
+        "id": 5,
+        "name": "Екатерина",
+        "patronymic": "Александровна",
+        "surname": "Блин",
+        "birthDate": "1999-02-10T00:00:00.000Z",
+        "averageRating": 4.7
+    },
+    {
+        "id": 6,
+        "name": "Алексей",
+        "patronymic": "Дмитриевич",
+        "surname": "Борщ",
+        "birthDate": "1992-02-21T00:00:00.000Z",
+        "averageRating": 2
+    },
+    {
+        "id": 7,
+        "name": "Анастасия",
+        "patronymic": "Кирилловна",
+        "surname": "Анатольева",
+        "birthDate": "1991-03-09T00:00:00.000Z",
+        "averageRating": 4
+    },
+    {
+        "id": 8,
+        "name": "Марта",
+        "patronymic": "Арсеньевна",
+        "surname": "Коробейникова",
+        "birthDate": "1998-09-12T00:00:00.000Z",
+        "averageRating": 3.5
+    },
+    {
+        "id": 9,
+        "name": "Юрий",
+        "patronymic": "Карлович",
+        "surname": "Борисов",
+        "birthDate": "2001-07-22T00:00:00.000Z",
+        "averageRating": 3.8
+    },
+    {
+        "id": 10,
+        "name": "Юлия",
+        "patronymic": "Алексеевна",
+        "surname": "Гаврилова",
+        "birthDate": "1999-02-10T00:00:00.000Z",
+        "averageRating": 4.7
+    },
+    {
+        "id": 11,
+        "name": "Анна",
+        "patronymic": "Константиновна",
+        "surname": "Керн",
+        "birthDate": "1995-11-30T00:00:00.000Z",
+        "averageRating": 5
+    },
+    {
+        "id": 12,
+        "name": "Матвей",
+        "patronymic": "Михайлович",
+        "surname": "Капустин",
+        "birthDate": "2002-12-31T00:00:00.000Z",
+        "averageRating": 2.9
+    }
+]
